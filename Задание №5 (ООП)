@@ -1,0 +1,43 @@
+import random 
+
+class Data:
+    def __init__(self, *info):
+        self.info = list(info)
+ 
+    def __getitem__(self, i):
+        return self.info[i]
+ 
+ 
+class Teacher:
+    def __init__(self):
+        self.work = 0
+ 
+    def teach(self, info, *pupil):
+        for i in pupil:
+            i.take(info)
+            self.work += 1
+ 
+ 
+class Student:
+    def __init__(self):
+        self.knowledge = []
+ 
+    def take(self, info):
+        self.knowledge.append(info)
+        
+    def forget(self):
+        self.knowledge.remove(random.choice(self.knowledge))
+        
+    def print(self):
+        print(self.knowledge)
+        
+lesson = Data('math', 'geography', 
+'language', 'music')
+student = Student()
+student.print()
+student.take(lesson[3])
+student.take(lesson[1])
+student.take(lesson[2])
+student.print()
+student.forget()
+student.print()
